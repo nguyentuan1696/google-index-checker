@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
+    <Router basename={'/google-index-checker/'}>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Root />} />
