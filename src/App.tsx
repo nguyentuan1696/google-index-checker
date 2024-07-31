@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
+    // Set basename Router for deploying to github pages
     <Router basename={'/google-index-checker/'}>
       <Routes>
         <Route path='/' element={<Layout />}>
