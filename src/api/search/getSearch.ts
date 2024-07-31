@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { constant } from '../../lib/constants'
 
+
 export async function getSearch({
   apiKey = '',
   urls = [],
@@ -21,7 +22,7 @@ export async function getSearch({
   }
 
   try {
-    const res = axios(config)
+    const res =  axios(config)
     const resOrganic = JSON.parse((await res).request.response).organic
     if (resOrganic.length >= constant.IsIndexed) {
       console.log('da duoc index', urls)

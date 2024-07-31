@@ -3,18 +3,18 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 export default function Layout() {
   return (
-    <div className='min-h-screen'>
+    <div className='relative flex min-h-screen flex-col'>
       <header>
         <Navbar />
       </header>
-      <div className=' '>
+      <div className='flex-1'>
         <main className=' container mx-auto px-4'>
           <Outlet />
         </main>
-        <footer>
-          <Footer />
-        </footer>
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }
