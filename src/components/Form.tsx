@@ -24,7 +24,12 @@ const FormSchema = z.object({
   apiKey: z.string().min(40, { message: 'Sai định dạng API Key' }),
 })
 
-export default function FormReport() {
+type IProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setData: (data: any) => void
+}
+
+export default function FormReport(props: IProps) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -39,9 +44,10 @@ export default function FormReport() {
     })
 
     const res = await getSearch(data.apiKey, convertArrayString(data.urls))
-    console.log('res= ', res)
+    const { setData } = props
+    setData(res)
 
-  
+    form.resetField('urls')
   }
 
   return (
@@ -78,7 +84,7 @@ export default function FormReport() {
           )}
         />
         <Button type='submit' className='w-full'>
-          Submit
+          Kiểm tra
         </Button>
       </form>
     </Form>
