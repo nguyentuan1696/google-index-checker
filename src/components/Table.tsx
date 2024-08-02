@@ -7,7 +7,15 @@ import {
   TableRow,
 } from '../ui/table'
 import { Label } from '../ui/label'
-
+import { CircleCheck } from 'lucide-react'
+import { CircleAlert } from 'lucide-react'
+import { constant } from '../lib/constants'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip'
 type ResultList = {
   id: number
   url: string
@@ -15,7 +23,6 @@ type ResultList = {
 }
 
 export default function TableReport({ data }: { data: ResultList[] }) {
-
   return (
     <div>
       <Label htmlFor='text'>Bảng kết quả</Label>
@@ -33,7 +40,29 @@ export default function TableReport({ data }: { data: ResultList[] }) {
               <TableCell className='font-medium'>{v.id}</TableCell>
               <TableCell className=''>{v.url}</TableCell>
               <TableCell className='text-right'>
-                {v.index === 1 ? 'ok' : ' ko ok'}
+                {v.index === constant.IsIndexed ? (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <CircleCheck />
+                      </TooltipTrigger>
+                      <TooltipContent className='mx-2'>
+                        <p>Trang đã được index</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                ) : (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <CircleAlert />
+                      </TooltipTrigger>
+                      <TooltipContent className='mx-2'>
+                        <p>Trang chưa được index</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
               </TableCell>
             </TableRow>
           ))}
