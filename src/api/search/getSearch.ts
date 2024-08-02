@@ -26,11 +26,6 @@ export async function getSearch(apiKey?: string, urls?: string[]) {
       })
       const resOrganic = JSON.parse((await res).request.response).organic
 
-      objectRes.id = i + 1
-      objectRes.url = (urls || [])[i]
-      objectRes = { ...objectRes, ...objectRes }
-      arrayResult = [...arrayResult, objectRes]
-
       if (resOrganic.length >= constant.IndexTotal) {
         objectRes.index = constant.IsIndexed
         objectRes = { ...objectRes, ...objectRes }
@@ -38,6 +33,10 @@ export async function getSearch(apiKey?: string, urls?: string[]) {
         objectRes.index = constant.IsNotIndex
         objectRes = { ...objectRes, ...objectRes }
       }
+
+      objectRes.id = i + 1
+      objectRes.url = (urls || [])[i]
+      arrayResult = [...arrayResult, objectRes]
     } catch (error) {
       console.error(`API:getSearch:URL: ${(urls || [])[i]} :ERROR: ${error}`)
     }
