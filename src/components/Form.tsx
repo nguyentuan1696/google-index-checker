@@ -37,8 +37,11 @@ export default function FormReport() {
     toast({
       title: 'Relax... và chờ chút để hệ thống xử lí nhé 🥳',
     })
+
     const res = await getSearch(data.apiKey, convertArrayString(data.urls))
     console.log('res= ', res)
+
+  
   }
 
   return (
