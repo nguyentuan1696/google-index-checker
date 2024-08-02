@@ -1,14 +1,7 @@
 import axios from 'axios'
 import { constant } from '../../lib/constants'
 
-export async function getSearch({
-  apiKey = '',
-  urls = '',
-}: {
-  apiKey: string
-  urls: string
-}) {
-  console.log('data', apiKey, urls)
+export async function getSearch(apiKey: string, urls: string) {
   const config = {
     method: 'post',
     url: constant.BASE_URL_API,
