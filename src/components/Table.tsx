@@ -46,7 +46,7 @@ export default function TableReport({ data }: { data: ResultList[] }) {
                       <TooltipTrigger>
                         <CircleCheck />
                       </TooltipTrigger>
-                      <TooltipContent className='mx-2'>
+                      <TooltipContent className='mx-1'>
                         <p>Trang đã được index</p>
                       </TooltipContent>
                     </Tooltip>
@@ -57,7 +57,7 @@ export default function TableReport({ data }: { data: ResultList[] }) {
                       <TooltipTrigger>
                         <CircleAlert />
                       </TooltipTrigger>
-                      <TooltipContent className='mx-2'>
+                      <TooltipContent className='mx-1'>
                         <p>Trang chưa được index</p>
                       </TooltipContent>
                     </Tooltip>
