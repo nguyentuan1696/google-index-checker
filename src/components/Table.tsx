@@ -23,7 +23,7 @@ export default function TableReport() {
         <TableBody>
           <TableRow>
             <TableCell className='font-medium'>1</TableCell>
-            <TableCell className='line-clamp-1'>
+            <TableCell className=''>
               https://github.com/nguyentuan1696/google-index-checkervvvvhttps://github.com/nguyentuan1696/google-index-checker
             </TableCell>
             <TableCell className='text-right'>index</TableCell>

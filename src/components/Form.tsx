@@ -17,6 +17,7 @@ import {
 import { Textarea } from '../ui/textarea'
 import { toast } from '../ui/use-toast'
 import { getSearch } from '../api/search/getSearch'
+import { convertArrayString } from '../lib/utils'
 
 const FormSchema = z.object({
   urls: z.string(),
@@ -41,10 +42,7 @@ export default function FormReport() {
       //   </pre>
       // ),
     })
-
-    const { apiKey, urls } = data
-
-    const res = getSearch(apiKey, urls)
+    const res = getSearch(data.apiKey, convertArrayString(data.urls))
     console.log('res= ', res)
   }
 
