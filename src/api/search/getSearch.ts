@@ -9,9 +9,9 @@ type ResultList = {
 
 export async function getSearch(apiKey?: string, urls?: string[]) {
   let arrayResult: ResultList[] = []
-  let objectRes = {}
+  let objectRes = {} as ResultList
 
-  for (let i = 0; i <= (urls || [])?.length; i++) {
+  for (let i = 0; i < (urls || [])?.length; i++) {
     try {
       const res = axios({
         method: 'post',
@@ -25,19 +25,23 @@ export async function getSearch(apiKey?: string, urls?: string[]) {
         }),
       })
       const resOrganic = JSON.parse((await res).request.response).organic
-      if (resOrganic.length >= constant.Indexed) {
-        const a: ResultList = {
-          id: i + 1,
-          url: (urls || [])[i],
-          index: constant.IsIndexed,
-        }
-        objectRes = { ...objectRes, ...a }
-        arrayResult = [...arrayResult, objectRes]
+
+      objectRes.id = i + 1
+      objectRes.url = (urls || [])[i]
+      objectRes = { ...objectRes, ...objectRes }
+      arrayResult = [...arrayResult, objectRes]
+
+      if (resOrganic.length >= constant.IndexTotal) {
+        objectRes.index = constant.IsIndexed
+        objectRes = { ...objectRes, ...objectRes }
       } else {
-        console.log('chua duoc index')
+        objectRes.index = constant.IsNotIndex
+        objectRes = { ...objectRes, ...objectRes }
       }
     } catch (error) {
       console.error(`API:getSearch:URL: ${(urls || [])[i]} :ERROR: ${error}`)
     }
   }
+
+  return arrayResult
 }

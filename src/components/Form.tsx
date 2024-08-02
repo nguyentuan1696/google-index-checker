@@ -33,16 +33,11 @@ export default function FormReport() {
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: 'Relax... và chờ chút để hệ thống xử lí nhé 🥳',
-      // description: (
-      //   <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-      //     <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-      //   </pre>
-      // ),
     })
-    const res = getSearch(data.apiKey, convertArrayString(data.urls))
+    const res = await getSearch(data.apiKey, convertArrayString(data.urls))
     console.log('res= ', res)
   }
 
