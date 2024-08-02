@@ -84,7 +84,7 @@ export default function FormReport(props: IProps) {
           )}
         />
         <Button type='submit' className='w-full'>
-          Submit
+          Kiểm tra
         </Button>
       </form>
     </Form>
