@@ -28,14 +28,20 @@ type ResultList = {
   index: string
 }
 
+function handleReport(data: ResultList[]) {
+  if (data === null || data.length === 0) {
+    return
+  }
+
+  return exportToExcel(data, `report_${genDate()}`)
+}
+
 export default function TableReport({ data }: { data: ResultList[] }) {
   return (
     <div className=''>
       <div className='flex justify-between items-center'>
         <Label htmlFor='text'>Bảng kết quả</Label>
-        <Button onClick={() => exportToExcel(data, `report_${genDate()}`)}>
-          Tải về báo cáo
-        </Button>
+        <Button onClick={() => handleReport(data)}>Tải về báo cáo</Button>
       </div>
       <Table>
         <TableHeader>
