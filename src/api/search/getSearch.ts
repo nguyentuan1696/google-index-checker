@@ -4,7 +4,7 @@ import { constant } from '../../lib/constants'
 type ResultList = {
   id: number
   url: string
-  index: number
+  index: string
 }
 
 export async function getSearch(apiKey?: string, urls?: string[]) {

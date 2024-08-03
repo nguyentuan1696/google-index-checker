@@ -10,26 +10,37 @@ import { Label } from '../ui/label'
 import { CircleCheck } from 'lucide-react'
 import { CircleAlert } from 'lucide-react'
 import { constant } from '../lib/constants'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import { exportToExcel } from 'react-json-to-excel'
+import { genDate } from '../lib/utils'
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip'
+import { Button } from '../ui/button'
 type ResultList = {
   id: number
   url: string
-  index: number
+  index: string
 }
 
 export default function TableReport({ data }: { data: ResultList[] }) {
   return (
-    <div>
-      <Label htmlFor='text'>Bảng kết quả</Label>
+    <div className=''>
+      <div className='flex justify-between items-center'>
+        <Label htmlFor='text'>Bảng kết quả</Label>
+        <Button onClick={() => exportToExcel(data, `report_${genDate()}`)}>
+          Tải về báo cáo
+        </Button>
+      </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className='w-[100px]'>STT</TableHead>
+            <TableHead className=''>STT</TableHead>
             <TableHead>URL</TableHead>
             <TableHead className='text-right'>Trạng thái</TableHead>
           </TableRow>
